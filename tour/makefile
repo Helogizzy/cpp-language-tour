@@ -1,15 +1,10 @@
-# OMP env vars
-export OMP_SCHEDULE="static"
-export OMP_NUM_THREADS=8
-export OMP_DYNAMIC="false"
-export OMP_NESTED="true"
+CXX :=clang++
+CXXFLAGS := -std=c++11 -lm
 
-CC :=gcc
-CFLAGS := -g -fopenmp -lm
-
-SRC = $(wildcard *.c)
-BIN = $(patsubst %.c,%,$(SRC))
+SRC = $(wildcard *.cpp)
+BIN = $(patsubst %.cpp,%,$(SRC))
 
 all: $(BIN)
 
-clean: $(RM) $(BIN)
+clean:
+	$(RM) $(BIN)

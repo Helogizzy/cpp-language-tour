@@ -71,7 +71,337 @@ clang++ -std=c++11 -stdlib=libc++ hello.cpp -o hello
 
 Podemos usar o `Make` para facilitar nossa vida.
 
+### Estrutura de um programa
 
+Um programa simples em _C++_ segue a seguinte estrutura:
+
+```cpp
+// Headers e modulos
+#include <iostream>
+
+// Funcao principal: Retorno e corpo
+int main() {
+  // Expressao simples
+  std::cout << "Hello, World!" << std::endl;
+  // Retorno
+  return 0;
+}
+
+```
+
+### Keywords, Tipos e variaveis
+
+#### Keywords
+
+As seguintes expressoes sao palavras reservadas em _C++_ e portanto nao podem ser usados como nome de variaveis:
+
+```text
+alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool,
+break, case, catch, char, char16_t, char32_t, class, compl,
+const, constexpr, const_cast, continue, decltype, default,
+delete, do, double, dynamic_cast, else, enum, explicit,
+export, extern, false, float, for, friend, goto, if, inline,
+int, long, mutable, namespace, new, noexcept, not, not_eq,
+nullptr, operator, or, or_eq, private, protected, public,
+register, reinterpret_cast, return, short, signed, sizeof,
+static, static_assert, static_cast, struct, switch, template,
+this, thread_local, throw, true, try, typedef, typeid,
+typename, union, unsigned, using, virtual, void, volatile,
+wchar_t, while, xor, xor_eq
+```
+
+#### Tipos de dados fundamentais
+
+Tipos de dados fundamentais sao tipos basicos implementados pela linguagem utilizados para representar unidades de armazanemento atomicas. No _C++_ temos os seguintes tipos de dados fundamentais:
+
+![types](./assets/types.png)
+
+A declaracao de variaveis e feita da seguinte forma:
+
+```cpp
+// variaveis
+#include <iostream>
+
+/** Namespacing
+    Dividir declaracao de simbolos em "pacotes",
+    para evitar conflitos de nomes.
+*/
+using namespace std;
+
+int main() {
+  // declaracao de variaveis com valores padroes
+  int a(8), b = 12, c{21};
+  // declaracao de variaveis nao inicializadas
+  float result, d;
+
+  // atribuicao de valores
+  d = -48.0f;
+  // operacoes aritmeticas (com type casting)
+  result = float(((a - b) * c)) / d;
+
+  cout << result;
+  return 0;
+}
+```
+
+A deducao de tipos no _C++_ e feita utilizando as palavras reservadas `auto` e `decltype`:
+
+```cpp
+#include <iostream>
+
+/* Funcao anonima (aka lambda) sendo atribuida a uma variavel
+   O seu tipo de retorno e inferido pelo compilador(utilizacao do auto)
+*/
+auto fn = []() {
+  return 42;
+};
+
+auto main() -> int {
+  // inferencia de tipos em c++
+  auto result = fn();
+  decltype(result) result2 = result + 10;
+
+  std::cout << result << std::endl;
+  std::cout << result2 << std::endl;
+  return 0;
+}
+```
+
+#### Tipos de dados compostos
+
+O _C++_ possui uma rica biblioteca de tipos de dados compostos. Um exemplo e a classe `string`, que armazena sequencias de caracteres:
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+  std::string s = "Hello, World!";
+  std::cout << s << std::endl;
+
+
+  // sequencia de caracteres
+  for (auto c : s) {
+    std::cout << c;
+  }
+  std::cout << std::endl;
+
+  /* string e uma classe de dados
+     Portanto possui muitos metodos
+  */
+  s.push_back(' ');
+  s.replace(0, 5, "Hola");
+  s.append("I'm a string");
+
+  std::cout << s << std::endl;
+
+  return 0;
+}
+```
+
+#### Constantes
+
+No _C++_ podemos definir expressoes com valores fixos de 4 formas: com o `pre-processador`, com a palavra reservada `const`, com a palavra reservada `constexpr` e com valores literais.
+
+```cpp
+#include <iostream>
+
+#define PI 3.14159265358979323846
+const double E = 2.71828182845904523536;
+constexpr double PHI = 1.61803398874989484820;
+
+int main() {
+  std::cout << "pi = " << PI << std::endl;
+  std::cout << "e = " << E << std::endl;
+  std::cout << "phi = " << PHI << std::endl;
+  std::cout << "mi = " << 1.84775906502257351225f << std::endl;
+  return 0;
+}
+```
+
+#### Operadores
+
+O _C++_ possui uma vasta lista de operadores, alguns deles sao:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  // Operadores de atribuicao
+  int a = 1, b = 2;
+
+  // Operadores aritmeticos
+  cout << a << " + " << b << " = " << a + b << endl;
+  cout << a << " - " << b << " = " << a - b << endl;
+  cout << a << " * " << b << " = " << a * b << endl;
+  cout << a << " / " << b << " = " << a / b << endl;
+  cout << a << " % " << b << " = " << a % b << endl;
+  cout << a << " ^ " << b << " = " << (a ^ b) << endl;
+
+  // Operadores de atribuicao composta
+  cout << "a += b = " << (a += b) << endl;
+  cout << "a -= b = " << (a -= b) << endl;
+  cout << "a *= b = " << (a *= b) << endl;
+  cout << "a /= b = " << (a /= b) << endl;
+  cout << "a %= b = " << (a %= b) << endl;
+  cout << "a ^= b = " << (a ^= b) << endl;
+  cout << "a &= b = " << (a &= b) << endl;
+  cout << "a |= b = " << (a |= b) << endl;
+  cout << "a <<= b = " << (a <<= b) << endl;
+  cout << "a >>= b = " << (a >>= b) << endl;
+
+  // Operadores de incremento e decremento
+  cout << "a++ = " << (a++) << endl;
+  cout << "++a = " << (++a) << endl;
+
+  // operadores de comparacao
+  cout << "a == b = " << (a == b) << endl;
+  cout << "a != b = " << (a != b) << endl;
+  cout << "a < b = " << (a < b) << endl;
+  cout << "a > b = " << (a > b) << endl;
+  cout << "a <= b = " << (a <= b) << endl;
+  cout << "a >= b = " << (a >= b) << endl;
+
+  // Operadores logicos
+  cout << "a && b = " << (a && b) << endl;
+  cout << "a || b = " << (a || b) << endl;
+  cout << "!a = " << (!a) << endl;
+
+  // Operadores de bitwise
+  cout << "a & b = " << (a & b) << endl;
+  cout << "a | b = " << (a | b) << endl;
+  cout << "a ^ b = " << (a ^ b) << endl;
+  cout << "~a = " << (~a) << endl;
+  cout << "a << b = " << (a << b) << endl;
+  cout << "a >> b = " << (a >> b) << endl;
+
+  // Operador ternario
+  cout << "a ? b : c = " << (a ? b : 0) << endl;
+
+  // operadores de cast
+  cout << "(int)a = " << (int)a << endl;
+  cout << "(double)a = " << (double)a << endl;
+  cout << "(char)a = " << (char)a << endl;
+
+  return 0;
+}
+```
+
+As regras de precendencia de operadores sao mostradas a seguir:
+
+![precendence](./assets/precedence.png)
+
+
+#### Entrada e saida
+
+A biblioteca padrao do _C++_ define o header `<iostream>` como padrao para operacoes simples de entrada e saida. Alem disso, temos o header `<sstream>` que lida com operacoes de streams em strings:
+
+```cpp
+#include <iostream>
+#include <sstream>
+#include <string>
+
+int main() {
+  std::string a, b, c, str_int("123");
+  int int_a;
+
+  // io simples
+  std::cout << "Digite uma palavra: ";
+  std::cin >> a;
+  std::cout << "Digite outra palavra: ";
+  std::cin >> b;
+  std::cout << a << " + " << b << " = " << a + b << std::endl;
+
+  // ler uma linha inteira
+  std::cout << "Digite uma linha: ";
+  std::getline(std::cin, c);
+  std::getline(std::cin, c);
+  std::cout << c << std::endl;
+
+  // stringstream
+  std::cout << "converte string para inteiro: ";
+  std::stringstream(str_int) >> int_a;
+  std::cout << int_a << std::endl;
+  return 0;
+}
+```
+
+#### Controle de Fluxo e Loops
+
+A linguagem possui os comandos de selecao padrao: `if`, `else if`, `else` e o `switch case`. Alem disso, possui tambem os loops `for`, `while` e `do while`. Para a utilizacao em loops, temos os comandos de alteracao de fluxo `continue`, `break` e `goto`. Exemplos desses comandos podem ser vistos a seguir:
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+  std::string nome("Joao");
+  int idade = 30;
+  int altura = 1.75;
+  char sexo = 'M';
+
+  // if, else if, else
+  if (idade < 18) {
+    std::cout << "Voce e menor de idade" << std::endl;
+  } else if (idade >= 18 && idade <= 65) {
+    std::cout << "Voce e adulto" << std::endl;
+  } else {
+    std::cout << "Voce e idoso" << std::endl;
+  }
+
+  // switch
+  switch (sexo) {
+  case 'M':
+    std::cout << "Voce e do sexo masculino" << std::endl;
+    break;
+  case 'F':
+    std::cout << "Voce e do sexo feminino" << std::endl;
+    break;
+  default:
+    std::cout << "Voce e do sexo desconhecido" << std::endl;
+    break;
+  }
+
+  // while
+  int i = 0;
+  while (i < 10) {
+    std::cout << i << std::endl;
+    i++;
+  }
+
+  // do while
+  i = 0;
+  do {
+    std::cout << i << std::endl;
+    i++;
+  } while (i < 10);
+
+  // for
+  for (int j = 0; j < 10; j++) {
+    std::cout << j << std::endl;
+  }
+
+  // for (auto)
+  for (auto c : nome) {
+    std::cout << "[" << c << "]" << std::endl;
+  }
+
+  // jumps
+  for (int k = 0; k < 10; k += 2) {
+    if (k == 5) {
+      continue;
+    } else if (k == 7) {
+      break;
+    } else {
+      std::cout << k << std::endl;
+    }
+  }
+}
+```
+
+#### Funcoes
 
 ## Referencias
 
