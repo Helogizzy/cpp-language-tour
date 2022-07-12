@@ -403,10 +403,220 @@ int main() {
 
 #### Funcoes
 
+A sintaxe para definicao de funcoes e a seguir:
+
+```cpp
+type name ( parameter1, parameter2, ...) { statements }
+```
+
+Aqui `type` e o tipo de retorno da funcao, `name` e seu nome, `(parameter1, parameter2, ...)` sao os parametros da funcao (cada um com o seu tipo) e `statements` e o corpo da funcao.
+
+Tanto nos parametros quanto no tipo de retorno, podemos usar modificadores, como o const e o inline, que alteram atributos desses valores e permitem ao compilador realizar algumas alteracoes e otimizacoes.
+
+No _C++_ tambem temos funcoes anonimas (aka lambda), que facilitam algumas operacoes e oferecem de linguagens funcionais ao _C++_.
+
+Alem disso, podemos passar parametros por valor, onde e feita uma copia da variavel, ou por referencia, onde o endereco da variavel e passado no lugar de seu valor.
+
+```cpp
+#include <functional>
+#include <iostream>
+
+/* Funcao simples com dois parametros
+   passados por valor(possui valores padroes) */
+int subtraction(int a = 0, int b = 0) { return a - b; }
+
+// Funcao sem parametros e sem retorno, tambem chamada de procedimento
+void printmessage() { std::cout << "I'm a function!"; }
+
+/* Passando valores por referencia (em C usariamos ponteiros para essas
+   variaveis) */
+void duplicate(int &a, int &b) {
+  a *= 2;
+  b *= 2;
+}
+
+/* Modificadores podem ser usados para alterar o comportamento
+ * de parametros ou do retorno da funcao
+ * inline = o compilador nao fara o stacking da funcao, so chamara ela
+ * const = o compilador tera certeza que valor nao sera modificado
+ */
+inline const std::string concatenate(const std::string &a,
+                                     const std::string &b) {
+  return a + b;
+}
+
+auto main() -> int {
+  int a = 5, b = 10;
+  std::string s1 = "Hello", s2 = "World";
+
+  /* Exemplo de recursividade, escopo e funcao anonima */
+  const std::function<const int(const int)> factorial =
+      [&factorial](const int n) { return n == 0 ? 1 : n * factorial(n - 1); };
+
+  std::cout << "Subtraction of " << a << " and " << b << " is "
+            << subtraction(a, b) << std::endl;
+
+  printmessage();
+  duplicate(a, b);
+
+  std::cout << "Concatenation of " << s1 << " and " << s2 << " is "
+            << concatenate(s1, s2) << std::endl;
+
+  std::cout << "Factorial of " << a << " is " << factorial(a) << std::endl;
+
+  return 0;
+}
+```
+
+#### Templates e Sobrecarga de funcoes
+
+No _C++_, diferentes funcoes podem ter o mesmo nome se o tipo de dados de seus parametros sao diferentes, ou seja, essas funcoes estao `sobrecarregadas`. Podemos usar isso para criar um polimorfismo de parametros para uma funcao.
+
+Outra maneira de atingir esse polimorfismo e utilizar `templates de funcoes`, onde uma funcao e "gerada" para um tipo especifico. A sintaxe para template functions e a seguinte:
+
+```cpp
+template <template-parameters> function-declaration
+```
+
+Um exemplo dessas propriedades pode ser visto a seguir:
+
+```cpp
+#include <iostream>
+
+/* Dependendo do tipo dos parametros
+  uma das funcoes sera chamada
+*/
+const int add(const int a = 0, const int b = 0) {
+  std::cout << "int overloading add" << std::endl;
+  return a + b;
+}
+const float add(const float a = 0, const float b = 0) {
+  std::cout << "float overloading add" << std::endl;
+  return a + b;
+}
+
+template <typename T> const T add(const T a, const T b) {
+  std::cout << "template overloading add" << std::endl;
+  const T result = a+b;
+  return result;
+}
+
+int main() {
+  std::cout << "int addd: " << add(1, 2) << std::endl;
+  std::cout << "float add: " << add(1.0f, 2.0f) << std::endl;
+  std::cout << "template add: " << add<std::string>("a", "b")
+            << std::endl;
+}
+```
+
+#### Escopo e Namespaces
+
+No _C++_ temos o escopo global, escopo de bloco, escopo de funcoes e escopo por `Namespaces`. Namespaces permitem o agrupamento de simbolos em escopos relacionados para evitar o conflito com escopos maiores. A palavra chave `using` introduz um simbolo no escopo atual, por exemplo, podemos inserir o nome `a` que pertence ao escopo `ns1` dentro de outro escopo.
+
+```cpp
+#include <iostream>
+
+int a = 0;
+float b = 0;
+
+namespace ns1 {
+int a = 1;
+float b = 2.0f;
+} // namespace ns1
+
+namespace ns2 {
+int a = 3;
+float b = 4.0f;
+std::string c = "4";
+} // namespace ns2
+
+void fn(void) {
+  int a = 4;
+  float b = 4.0f;
+
+  std::cout << "fn a: " << a << std::endl;
+  std::cout << "fn b: " << b << std::endl;
+}
+
+void fn2(void) {
+  using namespace ns2;
+
+  std::cout << "introduced ns1 c: " << c << std::endl;
+}
+
+int main() {
+  fn();
+  std::cout << "global a: " << a << std::endl;
+  std::cout << "global b: " << b << std::endl;
+  std::cout << "ns1 a: " << ns1::a << std::endl;
+  std::cout << "ns1 b: " << ns1::b << std::endl;
+  std::cout << "ns2 a: " << ns2::a << std::endl;
+  std::cout << "ns2 b: " << ns2::b << std::endl;
+}
+```
+
+Variaveis globais tem `armazenamento estatico`, ou seja, sao alocadas durante toda a execucao do programa. Ja variaveis locais tem o `armazenamento automatico`, onde a variavel e desalocada quando o fluxo sai daquele escopo.
+
+
+#### Arrays
+
+Arrays sao espacos de memoria continuos que contem o mesmo tipo de dados. A sintaxe para definir um array de um tipo especifico de dados e a seguinte:
+
+```cpp
+type name [elements];
+```
+
+Um exemplo da utilizacao de arrays:
+
+```cpp
+#include <iostream>
+
+// exemplo de funcao que recebem um array
+int sum(int a[], int n) {
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    sum += a[i];
+  }
+  return sum;
+}
+
+int main() {
+  // Array de inteiros, nao inicializados
+  int a[10];
+
+  // Array de inteiros, inicializados
+  int b[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+  // Array de inteiros, multidimensionais
+  int c[2][3] = {{1, 2, 3}, {4, 5, 6}};
+
+  for (int i = 0; i < 10; i++) {
+    // escrita em uma posicao do array
+    a[i] = i;
+  }
+
+  for (int i = 0; i < 10; i++) {
+    std::cout << a[i] << std::endl;
+  }
+
+  std::cout << sum(a, 10) << std::endl;
+
+  for (int i = 0; i < 10; i++) {
+    std::cout << b[i] << std::endl;
+  }
+  return 0;
+}
+```
+
+
 ## Referencias
 
 https://cplusplus.com/info/history/
+
 https://en.cppreference.com/w/cpp/20
+
 https://www.programmerall.com/article/2405560816/
+
 https://m.cplusplus.com/info/description/
+
 https://m.cplusplus.com/doc/tutorial/introduction/
