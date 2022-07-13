@@ -404,44 +404,44 @@ int main() {
 }
 ```
 
-#### Funcoes
+#### Funções
 
-A sintaxe para definicao de funcoes e a seguir:
+A sintaxe para definição de funções e a seguir:
 
 ```cpp
 type name ( parameter1, parameter2, ...) { statements }
 ```
 
-Aqui `type` e o tipo de retorno da funcao, `name` e seu nome, `(parameter1, parameter2, ...)` sao os parametros da funcao (cada um com o seu tipo) e `statements` e o corpo da funcao.
+Aqui `type` e o tipo de retorno da função, `name` e seu nome, `(parameter1, parameter2, ...)` são os parâmetros da função (cada um com o seu tipo) e `statements` e o corpo da função.
 
-Tanto nos parametros quanto no tipo de retorno, podemos usar modificadores, como o const e o inline, que alteram atributos desses valores e permitem ao compilador realizar algumas alteracoes e otimizacoes.
+Tanto nos parâmetros quanto no tipo de retorno, podemos usar modificadores, como o const e o inline, que alteram atributos desses valores e permitem ao compilador realizar algumas alterações e otimizações.
 
-No _C++_ tambem temos funcoes anonimas (aka lambda), que facilitam algumas operacoes e oferecem de linguagens funcionais ao _C++_.
+No _C++_ também temos funções anonimas (aka lambda), que facilitam algumas operações e oferecem de linguagens funcionais ao _C++_.
 
-Alem disso, podemos passar parametros por valor, onde e feita uma copia da variavel, ou por referencia, onde o endereco da variavel e passado no lugar de seu valor.
+Além disso, podemos passar parâmetros por valor, onde e feita uma cópia da variável, ou por referência, onde o endereço da variável e passado no lugar de seu valor.
 
 ```cpp
 #include <functional>
 #include <iostream>
 
-/* Funcao simples com dois parametros
-   passados por valor(possui valores padroes) */
+/* Função simples com dois parâmetros
+   passados por valor(possui valores padrões) */
 int subtraction(int a = 0, int b = 0) { return a - b; }
 
-// Funcao sem parametros e sem retorno, tambem chamada de procedimento
+// Função sem parâmetros e sem retorno, também chamada de procedimento
 void printmessage() { std::cout << "I'm a function!"; }
 
-/* Passando valores por referencia (em C usariamos ponteiros para essas
-   variaveis) */
+/* Passando valores por referência (em C usaríamos ponteiros para essas
+   variáveis) */
 void duplicate(int &a, int &b) {
   a *= 2;
   b *= 2;
 }
 
 /* Modificadores podem ser usados para alterar o comportamento
- * de parametros ou do retorno da funcao
- * inline = o compilador nao fara o stacking da funcao, so chamara ela
- * const = o compilador tera certeza que valor nao sera modificado
+ * de parâmetros ou do retorno da função
+ * inline = o compilador não fara o stacking da funcao, só chamara ela
+ * const = o compilador terá certeza que valor não sera modificado
  */
 inline const std::string concatenate(const std::string &a,
                                      const std::string &b) {
@@ -452,7 +452,7 @@ auto main() -> int {
   int a = 5, b = 10;
   std::string s1 = "Hello", s2 = "World";
 
-  /* Exemplo de recursividade, escopo e funcao anonima */
+  /* Exemplo de recursividade, escopo e função anonima */
   const std::function<const int(const int)> factorial =
       [&factorial](const int n) { return n == 0 ? 1 : n * factorial(n - 1); };
 
@@ -471,11 +471,11 @@ auto main() -> int {
 }
 ```
 
-#### Templates e Sobrecarga de funcoes
+#### Templates e Sobrecarga de funções
 
-No _C++_, diferentes funcoes podem ter o mesmo nome se o tipo de dados de seus parametros sao diferentes, ou seja, essas funcoes estao `sobrecarregadas`. Podemos usar isso para criar um polimorfismo de parametros para uma funcao.
+No _C++_, diferentes funções podem ter o mesmo nome se o tipo de dados de seus parâmetros são diferentes, ou seja, essas funções estão `sobrecarregadas`. Podemos usar isso para criar um polimorfismo de parâmetros para uma função.
 
-Outra maneira de atingir esse polimorfismo e utilizar `templates de funcoes`, onde uma funcao e "gerada" para um tipo especifico. A sintaxe para template functions e a seguinte:
+Outra maneira de atingir esse polimorfismo e utilizar `templates de funcoes`, onde uma função e "gerada" para um tipo específico. A sintaxe para template functions e a seguinte:
 
 ```cpp
 template <template-parameters> function-declaration
@@ -486,8 +486,8 @@ Um exemplo dessas propriedades pode ser visto a seguir:
 ```cpp
 #include <iostream>
 
-/* Dependendo do tipo dos parametros
-  uma das funcoes sera chamada
+/* Dependendo do tipo dos parâmetros
+  uma das funções sera chamada
 */
 const int add(const int a = 0, const int b = 0) {
   std::cout << "int overloading add" << std::endl;
@@ -514,7 +514,7 @@ int main() {
 
 #### Escopo e Namespaces
 
-No _C++_ temos o escopo global, escopo de bloco, escopo de funcoes e escopo por `Namespaces`. Namespaces permitem o agrupamento de simbolos em escopos relacionados para evitar o conflito com escopos maiores. A palavra chave `using` introduz um simbolo no escopo atual, por exemplo, podemos inserir o nome `a` que pertence ao escopo `ns1` dentro de outro escopo.
+No _C++_ temos o escopo global, escopo de bloco, escopo de funções e escopo por `Namespaces`. Namespaces permitem o agrupamento de símbolos em escopos relacionados para evitar o conflito com escopos maiores. A palavra-chave `using` introduz um símbolo no escopo atual, por exemplo, podemos inserir o nome `a` que pertence ao escopo `ns1` dentro de outro escopo.
 
 ```cpp
 #include <iostream>
@@ -558,23 +558,23 @@ int main() {
 }
 ```
 
-Variaveis globais tem `armazenamento estatico`, ou seja, sao alocadas durante toda a execucao do programa. Ja variaveis locais tem o `armazenamento automatico`, onde a variavel e desalocada quando o fluxo sai daquele escopo.
+Variáveis globais tem `armazenamento estatico`, ou seja, são alocadas durante toda a execução do programa. Já variáveis locais tem o `armazenamento automatico`, onde a variável e desalocada quando o fluxo sai daquele escopo.
 
 
 #### Arrays
 
-Arrays sao espacos de memoria continuos que contem o mesmo tipo de dados. A sintaxe para definir um array de um tipo especifico de dados e a seguinte:
+Arrays são espaços de memória contínuos que contem o mesmo tipo de dados. A sintaxe para definir um array de um tipo específico de dados e a seguinte:
 
 ```cpp
 type name [elements];
 ```
 
-Um exemplo da utilizacao de arrays:
+Um exemplo da utilização de arrays:
 
 ```cpp
 #include <iostream>
 
-// exemplo de funcao que recebem um array
+// exemplo de função que recebem um array
 int sum(int a[], int n) {
   int sum = 0;
   for (int i = 0; i < n; i++) {
@@ -584,7 +584,7 @@ int sum(int a[], int n) {
 }
 
 int main() {
-  // Array de inteiros, nao inicializados
+  // Array de inteiros, não inicializados
   int a[10];
 
   // Array de inteiros, inicializados
@@ -594,7 +594,7 @@ int main() {
   int c[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
   for (int i = 0; i < 10; i++) {
-    // escrita em uma posicao do array
+    // escrita em uma posição do array
     a[i] = i;
   }
 
@@ -614,7 +614,7 @@ int main() {
 
 #### Ponteiros
 
-Ponteiros sao referencias para posicoes de memoria que possuem um valor armazenado, que inclusive, podem ser outros ponteiros. Usamos o caractere `&` para o endereco de um ponteiro e `*` para o valor dele. Alem disso, podemos utilizar os operadores `++` e `--` para realizar a aritmetica de ponteiros.
+Ponteiros são referências para posições de memória que possuem um valor armazenado, que inclusive, podem ser outros ponteiros. Usamos o caractere `&` para o endereço de um ponteiro e `*` para o valor dele. Além disso, podemos utilizar os operadores `++` e `--` para realizar a aritmética de ponteiros.
 
 ```cpp
 // exemplo de ponteiros
@@ -646,9 +646,9 @@ int main() {
 }
 ```
 
-#### Memoria Dinamica
+#### Memoria Dinâmica
 
-Em `C`, era usado as funcoes da familia `*alloc()` e `free()` para a alocacao/desalocacao dinamica de memoria. No `C++` foi introduzido novos operadores para a gerencia de memoria dinamica na linguagem:
+Em `C`, era usado as funções da família `*alloc()` e `free()` para a alocação/desalocação dinâmica de memória. No `C++` foi introduzido novos operadores para a gerência de memória dinâmica na linguagem:
 
 ```cpp
 pointer = new type
@@ -660,13 +660,13 @@ delete pointer;
 delete[] pointer;
 ```
 
-Um exemplo da utilizacao desses operadores:
+Um exemplo da utilização desses operadores:
 
 ```cpp
 #include <iostream>
 
 int main() {
-  // criacao de um arr  ay de inteiros utilizando o new
+  // criação de um array de inteiros utilizando o new
   int *p = new int[10];
 
   for (int i = 0; i < 10; i++) {
@@ -677,14 +677,14 @@ int main() {
     std::cout << p[i] << std::endl;
   }
 
-  // destruicao do array criado utilizando o delete
+  // destruição do array criado utilizando o delete
   delete[] p;
 }
 ```
 
 #### Structs
 
-O C++ herdou as `structs` do C, que sao um agrupamento de dados relacionados. Porem, como C++ e uma linguagem orientada a objetos, a struct e um sinonimo de classes. A sintaxe para definir uma struct e a seguinte:
+O C++ herdou as `structs` do C, sendo um agrupamento de dados relacionados. Porem, como C++ e uma linguagem orientada a objetos, a struct e um sinônimo de classes. A sintaxe para definir uma struct e a seguinte:
 
 ```cpp
 struct type_name {
@@ -696,14 +696,14 @@ struct type_name {
 } object_names;
 ```
 
-Exemplo de utilizacao:
+Exemplo de utilização:
 
 ```cpp
-// exemplo de utilizacao de structs em c++
+// exemplo de utilização de structs em c++
 #include <iostream>
 
-/* structs sao definidas com a palavra reservada struct
-   Note a utilizacao da palavra chave using para a definicao do tipo
+/* structs são definidas com a palavra reservada struct
+   Note a utilização da palavra-chave using para a definição do tipo
 */
 using Point = struct {
   int x;
@@ -721,7 +721,7 @@ int main() {
 
 #### Classes
 
-Classes no _C++_ sao criadas utilizando a palavra chave _class_. Classes sao parecidas com structs, porem podem ter funcoes como membros:
+Classes no _C++_ são criadas utilizando a palavra-chave _class_. Classes são parecidas com structs, porem podem ter funções como membros:
 
 ```cpp
 class class_name {
@@ -762,7 +762,7 @@ Pessoa::Pessoa(const string &nome, const int idade) {
   this->idade = idade;
 }
 
-// Funcoes membros
+// Funções membros
 string Pessoa::getNome() { return this->nome; }
 
 int Pessoa::getIdade() { return this->idade; }
@@ -787,12 +787,12 @@ int main () {
 }
 ```
 
-#### Heranca e funcoes amigas
+#### Herança e funções amigas
 
-Funcoes amigas de uma classe sao funcoes especiais que podem acessar os membros privados e protegidos de uma classe:
+Funções amigas de uma classes são funções especiais que podem acessar os membros privados e protegidos de uma classe:
 
 ```cpp
-// Exemplo do uso de funcoes amigas
+// Exemplo do uso de funções amigas
 #include <iostream>
 using namespace std;
 
@@ -806,7 +806,7 @@ public:
   friend Rectangle duplicate(const Rectangle &);
 };
 
-/* Funcao amiga que retorna um objeto duplicado,
+/* Função amiga que retorna um objeto duplicado,
  * possui acesso ao objeto original */
 Rectangle duplicate(const Rectangle &param) {
   Rectangle res;
@@ -824,12 +824,12 @@ int main() {
 }
 ```
 
-Existem funcoes amigas que seguem o mesmo conceito.
+Existem funções amigas que seguem o mesmo conceito.
 
-Em _C++_ classes podem ser estendidas, herdando caracteristicas e metodos da classe base. Por exemplo, as classes `Retangle` e `Triangle` podem estender a classe `Poligon`:
+Em _C++_ classes podem ser estendidas, herdando características e métodos da classe base. Por exemplo, as classes `Retangle` e `Triangle` podem estender a classe `Poligon`:
 
 ```cpp
-// exemplo de heranca
+// exemplo de herança
 #include <iostream>
 using namespace std;
 
@@ -865,12 +865,12 @@ int main() {
 }
 ```
 
-No C++ podemos ter heranca multipla, ou seja, uma classe que herda caracteristicas de duas ou mais classes base.
+No C++ podemos ter herança múltipla, ou seja, uma classe que herda características de duas ou mais classes-base.
 
 
 #### Polimorfismo
 
-No C++, ponteiros para classes derivadas sao compativeis com o tipo ponteiro de suas classes base. Assim, _Polimorfismo_ e a tecnica que utiliza essa feature para deixar o codigo mais versatil.
+No C++, ponteiros para classes derivadas são compatíveis com o tipo ponteiro de suas classes-base. Assim, _Polimorfismo_ e a técnica que utiliza essa feature para deixar o código mais versátil.
 
 ```cpp
 // exemplo de polimorfismo
@@ -913,9 +913,9 @@ int main() {
 }
 ```
 
-#### Metodos Virtuais e classes abstratas
+#### Métodos Virtuais e classes abstratas
 
-Metodos virtuais sao metodos de classes base que devem ser implementados nas classes derivadas. Ja classes abstratas sao classes que servem somente como base para a criacao de outras, ou seja, todos os seus metodos sao virtuais, e as classes que derivam dela devem implementar esses metodos.
+Métodos virtuais são métodos de classes-base que devem ser implementados nas classes derivadas. Já classes abstratas são classes que servem somente como base para a criação de outras, ou seja, todos os seus métodos são virtuais, e as classes que derivam dela devem implementar esses métodos.
 
 ```cpp
 // abstract base class example
@@ -957,12 +957,12 @@ int main() {
 }
 ```
 
-#### Excessoes
+#### Exceções
 
-No C++ Excessoes sao tratadas com as palavras chave `try` `catch`. Para lancar uma excessao utilizamos a palavra chave `throw`. Um exemplo disso:
+No C++ Exceções são tratadas com as palavras-chave `try` `catch`. Para lançar uma exceção utilizamos a palavra-chave `throw`. Um exemplo disso:
 
 ```cpp
-// exemplo de excessoes
+// exemplo de exceções
 #include <exception>
 #include <iostream>
 using namespace std;
@@ -972,13 +972,13 @@ class myexception : public exception {
 } myex;
 
 int main() {
-  // exemplo de excessoes: alocacao de memoria
+  // exemplo de exceções: alocação de memória
   try {
     int *myarray = new int[1000];
   } catch (exception &e) {
     cout << "Standard exception: " << e.what() << endl;
   }
-  // exemplo de excessoes: excessao personalizada
+  // exemplo de exceções: exceção personalizada
   try {
     throw myex;
   } catch (exception &e) {
@@ -988,12 +988,12 @@ int main() {
 }
 ```
 
-### Entrada e Saida com arquivos
+### Entrada e Saída com arquivos
 
-No _C_ Trabalhavamos com arquivos utilizando, por exemplo, as funcoes `fwrite` e `fread`. Ja no _C++_ trabalhamos com arquivos por meio de `streams` de entrada e saida. Um exemplo:
+No _C_ Trabalhávamos com arquivos utilizando, por exemplo, as funções `fwrite` e `fread`. Já no _C++_ trabalhamos com arquivos através de `streams` de entrada e saída. Um exemplo:
 
 ```cpp
-// manipulacao de arquivos
+// manipulação de arquivos
 #include <iostream>
 #include <fstream>
 using namespace std;
