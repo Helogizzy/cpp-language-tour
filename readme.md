@@ -714,6 +714,74 @@ int main() {
 }
 ```
 
+#### Classes
+
+Classes no _C++_ sao criadas utilizando a palavra chave _class_. Classes sao parecidas com structs, porem podem ter funcoes como membros:
+
+```cpp
+class class_name {
+  access_specifier_1:
+    member1;
+  access_specifier_2:
+    member2;
+  ...
+} object_names;
+```
+
+Um exemplo de classes no C++:
+
+```cpp
+// Exemplo de classes em C++
+#include <iostream>
+using namespace std;
+
+class Pessoa {
+public:
+  // Construtor
+  Pessoa(const string &nome, const int idade);
+  // Metodos
+  string getNome();
+  int getIdade();
+  void setNome(const string &nome);
+  void setIdade(const int idade);
+
+private:
+  // Atributos
+  string nome;
+  int idade;
+};
+
+// Construtor
+Pessoa::Pessoa(const string &nome, const int idade) {
+  this->nome = nome;
+  this->idade = idade;
+}
+
+// Funcoes membros
+string Pessoa::getNome() { return this->nome; }
+
+int Pessoa::getIdade() { return this->idade; }
+
+void Pessoa::setNome(const string &nome) { this->nome = nome; }
+
+void Pessoa::setIdade(int idade) { this->idade = idade; }
+
+int main () {
+  Pessoa pessoa("Joao", 20);
+
+  cout << "Nome: " << pessoa.getNome() << endl;
+  cout << "Idade: " << pessoa.getIdade() << endl;
+
+  pessoa.setNome("Maria");
+  pessoa.setIdade(30);
+
+  cout << "Nome: " << pessoa.getNome() << endl;
+  cout << "Idade: " << pessoa.getIdade() << endl;
+
+  return 0;
+}
+```
+
 ## Referencias
 
 https://cplusplus.com/info/history/

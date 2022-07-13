@@ -4,7 +4,6 @@
 /* structs sao definidas com a palavra reservada struct
    Note a utilizacao da palavra chave using para a definicao do tipo
 */
-
 using Point = struct {
   int x;
   int y;
