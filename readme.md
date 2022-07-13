@@ -1,101 +1,101 @@
 # Estudo de Caso: C++
 
-## Historico
+## Histórico
 
-No ano de 1979, em sua tese de PhD,  Bjarne Stroustup trabalhou muito com a linguagem de programacao _Simula 67_, uma das primeiras a suportar o paradigma orientado a objetos. Bjarne norou que esse paradigma era muito util no desenvolvimento de software, porem a linguagem simula era muito lenta para uso pratico.
+No ano de 1979, em sua tese de PhD,  Bjarne Stroustrup trabalhou muito com a linguagem de programação Simula 67, uma das primeiras a suportar o paradigma orientado a objetos. Bjarne norou que esse paradigma era muito útil no desenvolvimento de software, porem a linguagem simula era muito lenta para uso prático.
 
-Apos isso, Bjarne comecou a trabalhar no o _C com Classes_, um _superset_ da linguagem C que tentava adicionar funcionalidades de linguagens orientada a objetos na linguagem C, que e conhecida pela sua performance e utilidade em programacao de baixo nivel.
+Apos isso, Bjarne começou a trabalhar no o_C com Classes_, um superset da linguagem C que tentava adicionar funcionalidades de linguagens orientadas a objetos na linguagem C, que e conhecida pela sua performance e utilidade em programação de baixo nível.
 
-O primeiro compilador do _C com classes_ foi chamado de _Cfront_, que tambem foi escrito em _C com classes_. Porem, o _C com Classes_ foi abandonado em 1993 apos se tornar dificilmente extensivel.
+O primeiro compilador do C com classes foi chamado de Cfront, que também foi escrito em C com classes. Porem, o C com Classes foi abandonado em 1993 apos se tornar dificilmente extensível.
 
-Em 1983, o nome da linguagem foi mudado para _C++_. Varias features foram adicionadas junto a essa mudanca, como _funcoes virtuais_, _sobrecarga de funcoes_, referencias a variaveis com o simbolo _&_ e a palavra reservada const.
+Em 1983, o nome da linguagem foi mudado para C++. Varias features foram adicionadas junto a essa mudança, como funções virtuais, sobrecarga de funções, referencias a variáveis com o símbolo & e a palavra reservada const.
 
-Em 1985, Stroustup publicou o livro referencia para a linguagem c++, chamado de _The C++ Programming Language_.
+Em 1985, Stroustup publicou o livro referencia para a linguagem c++, chamado de The C++ Programming Language.
 
-Em 1998, o comite de padronizacao do C++ publicou o primeiro padrao inbternacional da linguagem, conhecido como o padrao _C++98_. Em 2003 esse padrao foi revisado, e foram adiconadas mais features na linguagem, mais notavelmente a Standard Template Library (STL), essa versao foi chamada de C++03.
+Em 1998, o comitê de padronização do C++ publicou o primeiro padrão internacional da linguagem, conhecido como o padrão C++98. Em 2003 esse padrão foi revisado, e foram adicionadas mais features na linguagem, mais notavelmente a Standard Template Library (STL), essa versão foi chamada de C++03.
 
-Na metade de 2011, o padrao _C++11_ foi finalizado. A Biblioteca _Boost_ teve um impacto consideravel nas features adicionadas nesse padrao, com ate alguns modulos sendo adicionados diretamente da boost. Algumas das features adicionadas nesse padrao foram o suporte a expressoes regulares, uma biblioteca de randomizacao, uma nova bibliote para trabalhar com tempo, suporte a operacoes atomicas, uma biblioteca de multi threading, uma nova sintaxe de loops for (igual o foreach), a palavra chave auto, novas classes de container, alem de muitas outras.
+Na metade de 2011, o padrão C++11 foi finalizado. A Biblioteca Boost teve um impacto considerável nas features adicionadas nesse padrão, com ate alguns módulos sendo adicionados diretamente da boost. Algumas das features adicionadas nesse padrão foram o suporte a expressões regulares, uma biblioteca de randomizacao, uma nova biblioteca para trabalhar com tempo, suporte a operações atômicas, uma biblioteca de multi threading, uma nova sintaxe de loops for (igual o foreach), a palavra-chave auto, novas classes de container, além de muitas outras.
 
-Atualmente, o padrao vigente e o _C++20_. Algumas das features de padrao sao o operador de comparacao em 3 vias (<=>), melhorias na utilizacao de funcoes lambda, coroutines, modulos e muitas outras.
+Atualmente, o padrão vigente e o C++20. Algumas das features de padrão são o operador de comparação em 3 vias (), melhorias na utilização de funções lambda, coroutines, módulos e muitas outras.
 
-Existem planos para um padrao futuro chamado _C++23_, com muitas mudancas planejadas.
+Existem planos para um padrão futuro chamado C++23, com muitas mudanças planejadas.
 
-## Objetivos, Contextualizacao e Caracteristicas
+## Objetivos, Contextualização e Características
 
-O _C++_ e uma linguagem de alto nivel, com ferramentas para se trabalhar em baixo nivel tambem, compativel com o C e com uma extensivel biblioteca tanto padrao quanto da comunidade.
+O C++ e uma linguagem de alto nível, com ferramentas para se trabalhar em baixo nível também, compatível com o C e com uma extensível biblioteca tanto padrão quanto da comunidade.
 
-Ate certo nivel o _C++_ e portavel, pois existem diversos compiladores para varias arquiteturas que fazem com que codigo _C++_ seja compilado e rodado em varias arquitetuas com pouca ou nenhuma modificacao.
+Ate certo nível o C++ e portável, pois existem diversos compiladores para várias arquiteturas que fazem com que código C++ seja compilado e rodado em várias arquiteturas com pouca ou nenhuma modificação.
 
-### Compilacao
+### Compilação
 
-A linguagem _C++_ e compilada, ou seja, o compilador traduz codigo escrito em _C++_ para o codigo de maquina da arquitetura alvo. Essa compilacao e feita de uma so vez. Alem disso, o compilador pode aplicar otimizacoes de codigo, resultando em um codigo de maquina mais rapido e/ou confiavel.
+A linguagem C++ e compilada, ou seja, o compilador traduz código escrito em C++ para o código de máquina da arquitetura alvo. Essa compilação e feita de uma só vez. Além disso, o compilador pode aplicar otimizações de código, resultando em um código de máquina mais rápido e/ou confiável.
 
-### Nivel de abstracao
+### Nível de abstração
 
-A linguagem _C++_ e uma linguagem de programacao de alto nivel, ou seja, oferece uma serie de abstracoes para facilitar o entendimento para humanos, como funcoes e objetos. Porem,  com o _C++_ tambem e possivel realizar manipulacoes de baixo nivel, inclusive sendo uma otima linguagem para isso.
+A linguagem C++ e uma linguagem de programação de alto nível, ou seja, oferece uma série de abstrações para facilitar o entendimento para humanos, como funções e objetos. Porem, com o C++ também e possível realizar manipulações de baixo nível, inclusive sendo uma ótima linguagem para isso.
 
 ### Sistema de tipos
 
 #### Forte ou Fraca
 
-C++ e fortemente tipada, ou seja, possui bastante restricoes quanto a conversao de tipos entre variaveis. Por exemplo, nao e possivel a conversao entre um _Int_ e um  objeto _Fruit_.
+C++ e fortemente tipada, ou seja, possui bastante restrições quanto a conversão de tipos entre variáveis. Por exemplo, não e possível a conversão entre um Int e um objeto Fruit.
 
-#### Inferencia
+#### Inferência
 
-O _C++_ suporta tanto a inferencia implicita, que e baseada no contexto que aquela variavel e usada, quanto a inferencia explicita, na qual o programador diz o tipo da variavel.
+O C++ suporta tanto a inferência implícita, que e baseada no contexto que aquela variável e usada, quanto a inferência explicita, na qual o programador diz o tipo da variável.
 
 #### Checagem
 
-Novamente, o _C++_ suporta tanto a checagem estatica quanto a checagem dinamica, ou seja, os seus tipos sao checados em tempo de compilacao e tambem em tempo de execucao.
+Novamente, o C++ suporta tanto a checagem estática quanto a checagem dinâmica, ou seja, os seus tipos são checados em tempo de compilação e também em tempo de execução.
 
-#### Seguranca de tipos
+#### Segurança de tipos
 
-A linguagem _C++_ nao e _type unsafe_, ou seja, ela leva em consideracao que o programador sabe o que esta fazendo e permite operacoes de conversao de tipos que podem levar a erros em tempo de execucao.
+A linguagem C++ não e type unsafe, ou seja, ela leva em consideração que o programador sabe o que esta fazendo e permite operações de conversão de tipos que podem levar a erros em tempo de execução.
 
 ### Paradigmas
 
-A linguagem _C++_ e multi paradigma, ou seja, suporta diversos paradigmas e tecnicas no mesmo programa. Alguns dos paradigmas que o _C++_ suporta sao: Procedural, generico, orientado a objetos e mais recentemente o funcional.
+A linguagem C++ e multi paradigma, ou seja, suporta diversos paradigmas e técnicas no mesmo programa. Alguns dos paradigmas que o C++ suporta são: Procedural, genérico, orientado a objetos e mais recentemente o funcional.
 
 ## Tour pela linguagem
 
 ### Compiladores
 
-Como dito anteriormente, o compilador e o software que traduz codigo feito em _C++_ para codigo de maquina. Atualmente, os dois compiladores mais maduros de _C++_ sao o _GCC_ e o _Clang (frontend do llvm)_.
+Como dito anteriormente, o compilador e o software que traduz código feito em C++ para código de máquina. Atualmente, os dois compiladores mais maduros de C++ sao o GCC e o Clang (frontend do llvm).
 
-Para compilar e rodar um programa em _C++_ podemos rodar no terminal o comando:l
+Para compilar e rodar um programa em C++ podemos rodar no terminal o comando: 1
 
-```bash
+bash
 clang++ -std=c++11 -stdlib=libc++ hello.cpp -o hello
 ./hello
-```
+
 
 Podemos usar o `Make` para facilitar nossa vida.
 
 ### Estrutura de um programa
 
-Um programa simples em _C++_ segue a seguinte estrutura:
+Um programa simples em C++ segue a seguinte estrutura:
 
-```cpp
+cpp
 // Headers e modulos
 #include <iostream>
 
-// Funcao principal: Retorno e corpo
+// Função principal: Retorno e corpo
 int main() {
-  // Expressao simples
+  // Expressão simples
   std::cout << "Hello, World!" << std::endl;
   // Retorno
   return 0;
 }
 
-```
+
 
 ### Keywords, Tipos e variaveis
 
 #### Keywords
 
-As seguintes expressoes sao palavras reservadas em _C++_ e portanto nao podem ser usados como nome de variaveis:
+As seguintes expressões são palavras reservadas em C++ e portanto não podem ser usados como nome de variáveis:
 
-```text
+text
 alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool,
 break, case, catch, char, char16_t, char32_t, class, compl,
 const, constexpr, const_cast, continue, decltype, default,
@@ -108,56 +108,56 @@ static, static_assert, static_cast, struct, switch, template,
 this, thread_local, throw, true, try, typedef, typeid,
 typename, union, unsigned, using, virtual, void, volatile,
 wchar_t, while, xor, xor_eq
-```
+
 
 #### Tipos de dados fundamentais
 
-Tipos de dados fundamentais sao tipos basicos implementados pela linguagem utilizados para representar unidades de armazanemento atomicas. No _C++_ temos os seguintes tipos de dados fundamentais:
+Tipos de dados fundamentais sao tipos básicos implementados pela linguagem utilizados para representar unidades de armazanemento atomicas. No C++ temos os seguintes tipos de dados fundamentais:
 
 ![types](./assets/types.png)
 
-A declaracao de variaveis e feita da seguinte forma:
+A declaração de variáveis e feita da seguinte forma:
 
-```cpp
-// variaveis
+cpp
+// variáveis
 #include <iostream>
 
 /** Namespacing
-    Dividir declaracao de simbolos em "pacotes",
+    Dividir declaração de símbolos em "pacotes",
     para evitar conflitos de nomes.
 */
 using namespace std;
 
 int main() {
-  // declaracao de variaveis com valores padroes
+  // declaração de variáveis com valores padrões
   int a(8), b = 12, c{21};
-  // declaracao de variaveis nao inicializadas
+  // declaração de variáveis nao inicializadas
   float result, d;
 
-  // atribuicao de valores
+  // atribuição de valores
   d = -48.0f;
-  // operacoes aritmeticas (com type casting)
+  // operações aritméticas (com type casting)
   result = float(((a - b) * c)) / d;
 
   cout << result;
   return 0;
 }
-```
 
-A deducao de tipos no _C++_ e feita utilizando as palavras reservadas `auto` e `decltype`:
 
-```cpp
+A dedução de tipos no C++ e feita utilizando as palavras reservadas `auto` e `decltype`:
+
+cpp
 #include <iostream>
 
-/* Funcao anonima (aka lambda) sendo atribuida a uma variavel
-   O seu tipo de retorno e inferido pelo compilador(utilizacao do auto)
+/* Função anonima (aka lambda) sendo atribuida a uma variável
+   O seu tipo de retorno e inferido pelo compilador(utilização do auto)
 */
 auto fn = []() {
   return 42;
 };
 
 auto main() -> int {
-  // inferencia de tipos em c++
+  // inferência de tipos em c++
   auto result = fn();
   decltype(result) result2 = result + 10;
 
@@ -165,13 +165,13 @@ auto main() -> int {
   std::cout << result2 << std::endl;
   return 0;
 }
-```
+
 
 #### Tipos de dados compostos
 
-O _C++_ possui uma rica biblioteca de tipos de dados compostos. Um exemplo e a classe `string`, que armazena sequencias de caracteres:
+O C++ possui uma rica biblioteca de tipos de dados compostos. Um exemplo e a classe `string`, que armazena sequencias de caracteres:
 
-```cpp
+cpp
 #include <iostream>
 #include <string>
 
@@ -197,13 +197,13 @@ int main() {
 
   return 0;
 }
-```
+
 
 #### Constantes
 
-No _C++_ podemos definir expressoes com valores fixos de 4 formas: com o `pre-processador`, com a palavra reservada `const`, com a palavra reservada `constexpr` e com valores literais.
+No C++ podemos definir expressões com valores fixos de 4 formas: com o `pre-processador`, com a palavra reservada `const`, com a palavra reservada `constexpr` e com valores literais.
 
-```cpp
+cpp
 #include <iostream>
 
 #define PI 3.14159265358979323846
@@ -217,13 +217,13 @@ int main() {
   std::cout << "mi = " << 1.84775906502257351225f << std::endl;
   return 0;
 }
-```
+
 
 #### Operadores
 
-O _C++_ possui uma vasta lista de operadores, alguns deles sao:
+O C++ possui uma vasta lista de operadores, alguns deles sao:
 
-```cpp
+cpp
 #include <iostream>
 
 using namespace std;
@@ -287,18 +287,18 @@ int main() {
 
   return 0;
 }
-```
+
 
 As regras de precendencia de operadores sao mostradas a seguir:
 
 ![precendence](./assets/precedence.png)
 
 
-#### Entrada e saida
+#### Entrada e saída
 
-A biblioteca padrao do _C++_ define o header `<iostream>` como padrao para operacoes simples de entrada e saida. Alem disso, temos o header `<sstream>` que lida com operacoes de streams em strings:
+A biblioteca padrão do C++ define o header `<iostream>` como padrão para operações simples de entrada e saída. Além disso, temos o header `<sstream>` que lida com operações de streams em strings:
 
-```cpp
+cpp
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -326,13 +326,13 @@ int main() {
   std::cout << int_a << std::endl;
   return 0;
 }
-```
+
 
 #### Controle de Fluxo e Loops
 
-A linguagem possui os comandos de selecao padrao: `if`, `else if`, `else` e o `switch case`. Alem disso, possui tambem os loops `for`, `while` e `do while`. Para a utilizacao em loops, temos os comandos de alteracao de fluxo `continue`, `break` e `goto`. Exemplos desses comandos podem ser vistos a seguir:
+A linguagem possui os comandos de seleção padrão: `if`, `else if`, `else` e o `switch case`. Além disso, possui também os loops `for`, `while` e `do while`. Para a utilização em loops, temos os comandos de alteração de fluxo `continue`, `break` e `goto`. Exemplos desses comandos podem ser vistos a seguir:
 
-```cpp
+cpp
 #include <iostream>
 #include <string>
 
@@ -399,8 +399,6 @@ int main() {
     }
   }
 }
-```
-
 #### Funcoes
 
 A sintaxe para definicao de funcoes e a seguir:
@@ -643,6 +641,78 @@ int main() {
 }
 ```
 
+#### Memoria Dinamica
+
+Em `C`, era usado as funcoes da familia `*alloc()` e `free()` para a alocacao/desalocacao dinamica de memoria. No `C++` foi introduzido novos operadores para a gerencia de memoria dinamica na linguagem:
+
+```cpp
+pointer = new type
+pointer = new type [number_of_elements]
+
+e
+
+delete pointer;
+delete[] pointer;
+```
+
+Um exemplo da utilizacao desses operadores:
+
+```cpp
+#include <iostream>
+
+int main() {
+  // criacao de um arr  ay de inteiros utilizando o new
+  int *p = new int[10];
+
+  for (int i = 0; i < 10; i++) {
+    p[i] = i;
+  }
+
+  for (int i = 0; i < 10; i++) {
+    std::cout << p[i] << std::endl;
+  }
+
+  // destruicao do array criado utilizando o delete
+  delete[] p;
+}
+```
+
+#### Structs
+
+O C++ herdou as `structs` do C, que sao um agrupamento de dados relacionados. Porem, como C++ e uma linguagem orientada a objetos, a struct e um sinonimo de classes. A sintaxe para definir uma struct e a seguinte:
+
+```cpp
+struct type_name {
+  member_type1 member_name1;
+  member_type2 member_name2;
+  member_type3 member_name3;
+  .
+  .
+} object_names;
+```
+
+Exemplo de utilizacao:
+
+```cpp
+// exemplo de utilizacao de structs em c++
+#include <iostream>
+
+/* structs sao definidas com a palavra reservada struct
+   Note a utilizacao da palavra chave using para a definicao do tipo
+*/
+using Point = struct {
+  int x;
+  int y;
+};
+
+int main() {
+  Point p;
+  p.x = 10;
+  p.y = 20;
+  std::cout << p.x << " " << p.y << std::endl;
+  return 0;
+}
+```
 
 ## Referencias
 
