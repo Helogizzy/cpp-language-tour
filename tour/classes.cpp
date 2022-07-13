@@ -44,6 +44,5 @@ int main () {
 
   cout << "Nome: " << pessoa.getNome() << endl;
   cout << "Idade: " << pessoa.getIdade() << endl;
-
   return 0;
 }

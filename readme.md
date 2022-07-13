@@ -75,7 +75,7 @@ Podemos usar o `Make` para facilitar nossa vida.
 
 Um programa simples em C++ segue a seguinte estrutura:
 
-cpp
+```cpp
 // Headers e modulos
 #include <iostream>
 
@@ -86,8 +86,7 @@ int main() {
   // Retorno
   return 0;
 }
-
-
+```
 
 ### Keywords, Tipos e variaveis
 
@@ -95,7 +94,7 @@ int main() {
 
 As seguintes expressões são palavras reservadas em C++ e portanto não podem ser usados como nome de variáveis:
 
-text
+```text
 alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool,
 break, case, catch, char, char16_t, char32_t, class, compl,
 const, constexpr, const_cast, continue, decltype, default,
@@ -108,7 +107,7 @@ static, static_assert, static_cast, struct, switch, template,
 this, thread_local, throw, true, try, typedef, typeid,
 typename, union, unsigned, using, virtual, void, volatile,
 wchar_t, while, xor, xor_eq
-
+```
 
 #### Tipos de dados fundamentais
 
@@ -118,7 +117,7 @@ Tipos de dados fundamentais sao tipos básicos implementados pela linguagem util
 
 A declaração de variáveis e feita da seguinte forma:
 
-cpp
+```cpp
 // variáveis
 #include <iostream>
 
@@ -142,11 +141,12 @@ int main() {
   cout << result;
   return 0;
 }
+```
 
 
 A dedução de tipos no C++ e feita utilizando as palavras reservadas `auto` e `decltype`:
 
-cpp
+```cpp
 #include <iostream>
 
 /* Função anonima (aka lambda) sendo atribuida a uma variável
@@ -165,13 +165,14 @@ auto main() -> int {
   std::cout << result2 << std::endl;
   return 0;
 }
+```
 
 
 #### Tipos de dados compostos
 
 O C++ possui uma rica biblioteca de tipos de dados compostos. Um exemplo e a classe `string`, que armazena sequencias de caracteres:
 
-cpp
+```cpp
 #include <iostream>
 #include <string>
 
@@ -197,13 +198,14 @@ int main() {
 
   return 0;
 }
+```
 
 
 #### Constantes
 
 No C++ podemos definir expressões com valores fixos de 4 formas: com o `pre-processador`, com a palavra reservada `const`, com a palavra reservada `constexpr` e com valores literais.
 
-cpp
+```cpp
 #include <iostream>
 
 #define PI 3.14159265358979323846
@@ -217,13 +219,13 @@ int main() {
   std::cout << "mi = " << 1.84775906502257351225f << std::endl;
   return 0;
 }
-
+```
 
 #### Operadores
 
 O C++ possui uma vasta lista de operadores, alguns deles sao:
 
-cpp
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -287,6 +289,7 @@ int main() {
 
   return 0;
 }
+```
 
 
 As regras de precendencia de operadores sao mostradas a seguir:
@@ -298,7 +301,7 @@ As regras de precendencia de operadores sao mostradas a seguir:
 
 A biblioteca padrão do C++ define o header `<iostream>` como padrão para operações simples de entrada e saída. Além disso, temos o header `<sstream>` que lida com operações de streams em strings:
 
-cpp
+```cpp
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -326,13 +329,13 @@ int main() {
   std::cout << int_a << std::endl;
   return 0;
 }
-
+```
 
 #### Controle de Fluxo e Loops
 
 A linguagem possui os comandos de seleção padrão: `if`, `else if`, `else` e o `switch case`. Além disso, possui também os loops `for`, `while` e `do while`. Para a utilização em loops, temos os comandos de alteração de fluxo `continue`, `break` e `goto`. Exemplos desses comandos podem ser vistos a seguir:
 
-cpp
+```cpp
 #include <iostream>
 #include <string>
 
@@ -399,6 +402,8 @@ int main() {
     }
   }
 }
+```
+
 #### Funcoes
 
 A sintaxe para definicao de funcoes e a seguir:
@@ -782,7 +787,227 @@ int main () {
 }
 ```
 
-## Referencias
+#### Heranca e funcoes amigas
+
+Funcoes amigas de uma classe sao funcoes especiais que podem acessar os membros privados e protegidos de uma classe:
+
+```cpp
+// Exemplo do uso de funcoes amigas
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+  int width, height;
+
+public:
+  Rectangle() {}
+  Rectangle(int x, int y) : width(x), height(y) {}
+  int area() { return width * height; }
+  friend Rectangle duplicate(const Rectangle &);
+};
+
+/* Funcao amiga que retorna um objeto duplicado,
+ * possui acesso ao objeto original */
+Rectangle duplicate(const Rectangle &param) {
+  Rectangle res;
+  res.width = param.width * 2;
+  res.height = param.height * 2;
+  return res;
+}
+
+int main() {
+  Rectangle foo;
+  Rectangle bar(2, 3);
+  foo = duplicate(bar);
+  cout << foo.area() << '\n';
+  return 0;
+}
+```
+
+Existem funcoes amigas que seguem o mesmo conceito.
+
+Em _C++_ classes podem ser estendidas, herdando caracteristicas e metodos da classe base. Por exemplo, as classes `Retangle` e `Triangle` podem estender a classe `Poligon`:
+
+```cpp
+// exemplo de heranca
+#include <iostream>
+using namespace std;
+
+class Polygon {
+protected:
+  int width, height;
+
+public:
+  void set_values(int a, int b) {
+    width = a;
+    height = b;
+  }
+};
+
+class Rectangle : public Polygon {
+public:
+  int area() { return width * height; }
+};
+
+class Triangle : public Polygon {
+public:
+  int area() { return width * height / 2; }
+};
+
+int main() {
+  Rectangle rect;
+  Triangle trgl;
+  rect.set_values(4, 5);
+  trgl.set_values(4, 5);
+  cout << rect.area() << '\n';
+  cout << trgl.area() << '\n';
+  return 0;
+}
+```
+
+No C++ podemos ter heranca multipla, ou seja, uma classe que herda caracteristicas de duas ou mais classes base.
+
+
+#### Polimorfismo
+
+No C++, ponteiros para classes derivadas sao compativeis com o tipo ponteiro de suas classes base. Assim, _Polimorfismo_ e a tecnica que utiliza essa feature para deixar o codigo mais versatil.
+
+```cpp
+// exemplo de polimorfismo
+#include <iostream>
+using namespace std;
+
+class Polygon {
+protected:
+  int width, height;
+
+public:
+  void set_values(int a, int b) {
+    width = a;
+    height = b;
+  }
+};
+
+class Rectangle : public Polygon {
+public:
+  int area() { return width * height; }
+};
+
+class Triangle : public Polygon {
+public:
+  int area() { return width * height / 2; }
+};
+
+int main() {
+  Rectangle rect;
+  Triangle trgl;
+  Polygon *ppoly1 = &rect;
+  Polygon *ppoly2 = &trgl;
+
+  ppoly1->set_values(4, 5);
+  ppoly2->set_values(4, 5);
+
+  cout << rect.area() << '\n';
+  cout << trgl.area() << '\n';
+  return 0;
+}
+```
+
+#### Metodos Virtuais e classes abstratas
+
+Metodos virtuais sao metodos de classes base que devem ser implementados nas classes derivadas. Ja classes abstratas sao classes que servem somente como base para a criacao de outras, ou seja, todos os seus metodos sao virtuais, e as classes que derivam dela devem implementar esses metodos.
+
+```cpp
+// abstract base class example
+#include <iostream>
+using namespace std;
+
+class Polygon {
+protected:
+  int width, height;
+
+public:
+  void set_values(int a, int b) {
+    width = a;
+    height = b;
+  }
+  virtual int area(void) = 0;
+};
+
+class Rectangle : public Polygon {
+public:
+  int area(void) { return (width * height); }
+};
+
+class Triangle : public Polygon {
+public:
+  int area(void) { return (width * height / 2); }
+};
+
+int main() {
+  Rectangle rect;
+  Triangle trgl;
+  Polygon *ppoly1 = &rect;
+  Polygon *ppoly2 = &trgl;
+  ppoly1->set_values(4, 5);
+  ppoly2->set_values(4, 5);
+  cout << ppoly1->area() << '\n';
+  cout << ppoly2->area() << '\n';
+  return 0;
+}
+```
+
+#### Excessoes
+
+No C++ Excessoes sao tratadas com as palavras chave `try` `catch`. Para lancar uma excessao utilizamos a palavra chave `throw`. Um exemplo disso:
+
+```cpp
+// exemplo de excessoes
+#include <exception>
+#include <iostream>
+using namespace std;
+
+class myexception : public exception {
+  virtual const char *what() const throw() { return "My exception happened"; }
+} myex;
+
+int main() {
+  // exemplo de excessoes: alocacao de memoria
+  try {
+    int *myarray = new int[1000];
+  } catch (exception &e) {
+    cout << "Standard exception: " << e.what() << endl;
+  }
+  // exemplo de excessoes: excessao personalizada
+  try {
+    throw myex;
+  } catch (exception &e) {
+    cout << e.what() << '\n';
+  }
+  return 0;
+}
+```
+
+### Entrada e Saida com arquivos
+
+No _C_ Trabalhavamos com arquivos utilizando, por exemplo, as funcoes `fwrite` e `fread`. Ja no _C++_ trabalhamos com arquivos por meio de `streams` de entrada e saida. Um exemplo:
+
+```cpp
+// manipulacao de arquivos
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main () {
+  ofstream myfile;
+  myfile.open ("example.txt");
+  myfile << "Writing this to a file.\n";
+  myfile.close();
+  return 0;
+}
+```
+
+### Referencias
 
 https://cplusplus.com/info/history/
 
