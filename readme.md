@@ -609,6 +609,41 @@ int main() {
 ```
 
 
+#### Ponteiros
+
+Ponteiros sao referencias para posicoes de memoria que possuem um valor armazenado, que inclusive, podem ser outros ponteiros. Usamos o caractere `&` para o endereco de um ponteiro e `*` para o valor dele. Alem disso, podemos utilizar os operadores `++` e `--` para realizar a aritmetica de ponteiros.
+
+```cpp
+// exemplo de ponteiros
+#include <iostream>
+
+using namespace std;
+
+void increment_all(int *start, int *stop) {
+  int *current = start;
+  while (current != stop) {
+    ++(*current); // incrementa o valor do ponteiro
+    ++current;    // incrementa o endereco do ponteiro
+  }
+}
+
+void print_all(const int *start, const int *stop) {
+  const int *current = start;
+  while (current != stop) {
+    cout << *current << '\n';
+    ++current; // incrementa a posicao de memoria do ponteiro
+  }
+}
+
+int main() {
+  int numbers[] = {10, 20, 30};
+  increment_all(numbers, numbers + 3);
+  print_all(numbers, numbers + 3);
+  return 0;
+}
+```
+
+
 ## Referencias
 
 https://cplusplus.com/info/history/
